@@ -69,3 +69,42 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+react api{
+    
+const API_KEY = '082d7edebad5889af817afdc3faceee4';
+const BASE_URL = 'https://api.themoviedb.org/3';
+const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/';
+}<div className="right">
+                <h2>{title}</h2>
+                {tagline && <p className="modal-tagline"><i>{tagline}</i></p>}
+
+                <p className="modal-info">
+                  <strong>Release Date:</strong> {release_date}
+                </p>
+
+                <p className="modal-info">
+                  <strong>Rating:</strong> {vote_average} / 10
+                </p>
+
+                <p className="modal-info">
+                  <strong>Runtime:</strong> {runtime ? `${runtime} min` : "Loading..."}
+                </p>
+
+                <p className="modal-info">
+                  <strong>Genres:</strong> {genres || "Loading..."}
+                </p>
+              </div> const fetchDetails = async () => {
+    try {
+      const res = await fetch(
+        `${BASE_URL}/movie/${id}?api_key=${API_KEY}`
+      );
+      const data = await res.json();
+
+      setRuntime(data.runtime);
+      setTagline(data.tagline);
+      setGenres(data.genres.map((g) => g.name).join(", "));
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
+  };
